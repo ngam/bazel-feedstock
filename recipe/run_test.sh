@@ -5,4 +5,11 @@ set -exuo pipefail
 
 cp -r ${RECIPE_DIR}/tutorial .
 cd tutorial
-bazel build --logging=6 --subcommands --verbose_failures //main:hello-world
+
+cat >> .bazelrc <<EOF
+build --logging=6
+build --subcommands
+build --verbose_failures
+EOF
+
+bazel build //main:hello-world
